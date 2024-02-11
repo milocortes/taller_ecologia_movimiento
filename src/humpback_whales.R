@@ -5,6 +5,8 @@ rm(list=ls())
 library(move)
 library(tidyr)
 library(ctmm)
+library(amt)
+library(sp)
 library(tidyverse)
 
 # Definimos las rutas donde se encuentran los datos
@@ -36,11 +38,28 @@ datos_move <- move(x=datos_crudos$location.long, y=datos_crudos$location.lat,
 # Generamos un objeto telemetría
 datos_tel <- as.telemetry(datos_move)
 
+# Visualizamos los datos de seguimiento
 plot(datos_tel)
 
-animal <- datos_tel$X53348
+#------------- Net squared displacement (NSD) ----------
 
-build_akde <- function(animal){
+### Generamos un data frame las coordenadas de seguimiento del individuo X53348 para obtener su NSD
+df_coordenadas <- data.frame(x = datos_tel$X53348$longitude, y = datos_tel$X53348$latitude)
+
+### Definimos un objeto make track para ejecutar la instrucción nsd
+track_animal <- make_track(df_coordenadas, x,y)
+
+### Ejecutamos la instrucción nsd y guardamos su salida
+nsd_animal <- nsd(track_animal)
+
+### Graficamos el NSD
+plot(nsd_animal, main="Serie de tiempo de NSD ", xlab="Tiempo", ylab="NSD")
+
+#------------- Kernel Density ----------
+
+# Definimos una función que estima varios kernel density
+
+calcula_kde <- function(animal){
   print(paste0("Ejecución para el animal ",animal@info$identity))
   print("Estimamos el modelo sin considerar la autocorrelacion")
   M.IID <- ctmm.fit(animal)
@@ -89,14 +108,12 @@ build_akde <- function(animal){
 
 }
 
+### Ejecutamos la función. La función guarda los png y tiffs en el directorio OUTPUT_PATH
+calcula_kde(datos_tel$X53348)
 
+### Cargamos los tiffs
+iid_kde <- raster("iid_kde_53348.tif")
+ouf_kde <- raster("ouf_kde_53348.tif")
+w_ouf_kde <- raster("w_ouf_kde_53348.tif")
 
-library(ggmap)
-library(mapproj)
-
-animal <- datos_tel$X53348
-
-leroyDF <- as.data.frame(animal)
-register_stadiamaps(your_stadia_key)
-m <- get_map(bbox(extent(leroy)*1.1),maptype="stamen_terrain", source="stadia", zoom=12)
-ggmap(m)+geom_path(data=leroyDF, aes(x=location.long, y=location.lat))
+sp::spplot(iid_kde)

@@ -5,7 +5,6 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
-\author{Hermilo Cortés González}
 \title{Taller Ecología del Movimiento}
 %\setbeamercovered{transparent} 
 %\setbeamertemplate{navigation symbols}{} 
@@ -77,23 +76,73 @@ Los principales tipos de movimiento son los de:
 \begin{frame}{Net squared displacement (NSD)}
 Una forma de distinguir estos tipos de movimientos es mediante el \textbf{Net squared displacement (NSD)}. Este indicador mide la distancia a partir de un punto de inicio de la trayectoria, donde inicia el seguimiento, hasta el punto final de seguimiento.
 
-De acuerdo al NSD, en teoría, se espera que el movimiento de migración tenga una forma de U invertida, lo que quiere decir que la población se aleja de la localidad inicial, permanece en una área provisional por un tiempo,y regresa a la localidad inicial, o una área relativamente cercana. La dispersión tendía la forma de una distribución normal acumulada, donde la población vive en una población inicial y se mueve a otra localidad diferente y ya no regresa a la localidad inicial. El movimiento de nomadismo presenta una linea con pendiente positiva donde la población se aleja más y más de donde comenzó el seguimiento. Para la residencia o área de actividad estable, la linea del NSD se espera sea una linea horizontal, o que existan oscilaciones alrededor de esta.
+\end{frame}
+
+\begin{frame}{Migración}
+	\begin{figure}
+		\includegraphics[scale=0.8]{images/migracion}
+		\caption{Migración. Tomado de \cite{bastille2016flexible}}
+	\end{figure}
 \end{frame}
 
 
-\begin{frame}{Limpieza de datos de movimiento}
+\begin{frame}{Dispersión}
+	\begin{figure}
+		\includegraphics[scale=0.8]{images/dispersion}
+		\caption{Dispersión. Tomado de \cite{bastille2016flexible}}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Nomadismo}
+	\begin{figure}
+		\includegraphics[scale=0.8]{images/nomadismo}
+		\caption{Nomadismo. Tomado de \cite{bastille2016flexible}}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{Sedentarismo}
+	\begin{figure}
+		\includegraphics[scale=0.8]{images/sedentarismo}
+		\caption{Sedentarismo. Tomado de \cite{bastille2016flexible}}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Datos: Movebank for animal tracking data}
+	\begin{figure}
+		\includegraphics[scale=0.2]{images/losdatos}
+		\caption{https://www.movebank.org/}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Humpback whales}
+	\begin{figure}
+		\includegraphics[scale=0.23]{images/elmovimiento}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Actividades}
 	\begin{itemize}
-		\item Ajustar lo datos al sistema de referencia adecuado del área de análisis.
-
-		\item  Remover valores duplicados.
-
-		\item  Ajustar los datos a la zona horaria del área de análisis.
-
-		\item  Generar una ventana periódica, es decir, que las localizaciones estén espaciadas en un segmento determinado (1 hr, 1 día, 1, semana, etc) para trabajar con los datos recolectados
-
+		\item Calcular Net squared displacement (NSD).
+		\item Estimar Kernel Density
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Kernel Density Univariado}
+	\begin{figure}
+		\includegraphics[scale=0.6]{images/KDECholesterol}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Kernel Density Bivariado}
+	\vspace{-0.2cm}
+	\begin{figure}
+		\includegraphics[scale=0.5]{images/Bivariate_example}
+	\end{figure}
+\end{frame}
 
 \begin{frame}{Referencias}
 \bibliographystyle{apalike} 
